@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body ng-controller="ScenarioController">
-  <div id="mainView" ng-view>
+  <div id="mainView" class="text-center" ng-view>
     <h1>Flash Point Companion</h1>
 
     <div class="col-sm-4">
@@ -30,13 +30,13 @@
         <div class="panel-heading">
           <h3 class="panel-title">Second Explosion</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body center-block">
           <div>
             {{secondExplosion[0]}}
             {{secondExplosion[1]}}
           </div>
 
-          <button type="button" class="btn btn-default" ng-click="rerollExplosion('secondExplosion')">reroll</button>
+          <button type="button" class="btn btn-default col-xs-offset-2 col-xs-8" ng-click="rerollExplosion('secondExplosion')">reroll</button>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
             {{thirdExplosion[1]}}
           </div>
 
-          <button type="button" class="btn btn-default" ng-click="rerollExplosion('thirdExplosion')">reroll</button>
+          <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="rerollExplosion('thirdExplosion')">reroll</button>
         </div>
       </div>
     </div>
@@ -66,21 +66,21 @@
               {{hazMat[0][0]}}
               {{hazMat[0][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('hazMat', 0)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hazMat', 0)">reroll</button>
           </div>
           <div class="col-xs-4">
             <div>
               {{hazMat[1][0]}}
               {{hazMat[1][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('hazMat', 1)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hazMat', 1)">reroll</button>
           </div>
           <div class="col-xs-4">
             <div>
               {{hazMat[2][0]}}
               {{hazMat[2][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('hazMat', 2)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hazMat', 2)">reroll</button>
           </div>
         </div>
       </div>
@@ -96,21 +96,21 @@
               {{poi[0][0]}}
               {{poi[0][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('poi', 0)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('poi', 0)">reroll</button>
           </div>
           <div class="col-xs-4">
             <div>
               {{poi[1][0]}}
               {{poi[1][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('poi', 1)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('poi', 1)">reroll</button>
           </div>
           <div class="col-xs-4">
             <div>
               {{poi[2][0]}}
               {{poi[2][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('poi', 2)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('poi', 2)">reroll</button>
           </div>
         </div>
       </div>
@@ -126,21 +126,21 @@
               {{hotSpots[0][0]}}
               {{hotSpots[0][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('hotSpots', 0)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hotSpots', 0)">reroll</button>
           </div>
           <div class="col-xs-4">
             <div>
               {{hotSpots[1][0]}}
               {{hotSpots[1][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('hotSpots', 1)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hotSpots', 1)">reroll</button>
           </div>
           <div class="col-xs-4">
             <div>
               {{hotSpots[2][0]}}
               {{hotSpots[2][1]}}
             </div>
-            <button type="button" class="btn btn-default" ng-click="reroll('hotSpots', 2)">reroll</button>
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hotSpots', 2)">reroll</button>
           </div>
         </div>
       </div>
