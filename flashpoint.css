@@ -1,0 +1,88 @@
+.d6-1 {
+  width: 64px;
+  height: 64px;
+  background: url(d6.png) -1px -1px;
+}
+
+.d6-2 {
+  width: 64px;
+  height: 64px;
+  background: url(d6.png) -65px -1px;
+}
+
+.d6-3 {
+  width: 64px;
+  height: 64px;
+  background: url(d6.png) -129px -1px;
+}
+
+.d6-4 {
+  width: 64px;
+  height: 64px;
+  background: url(d6.png) -1px -65px;
+}
+
+.d6-5 {
+  width: 64px;
+  height: 64px;
+  background: url(d6.png) -65px -65px;
+}
+
+.d6-6 {
+  width: 64px;
+  height: 64px;
+  background: url(d6.png) -129px -65px;
+}
+
+.d8-1 {
+  width: 64px;
+  height: 62px;
+  background: url(d8.png) 0 0;
+}
+
+.d8-2 {
+  width: 64px;
+  height: 62px;
+  background: url(d8.png) -64px 0;
+}
+
+.d8-3 {
+  width: 64px;
+  height: 62px;
+  background: url(d8.png) -128px 0;
+}
+
+.d8-4 {
+  width: 63px;
+  height: 62px;
+  background: url(d8.png) -192px 0;
+}
+
+.d8-5 {
+  width: 63px;
+  height: 62px;
+  background: url(d8.png) 0 -63px;
+}
+
+.d8-6 {
+  width: 63px;
+  height: 62px;
+  background: url(d8.png) -64px -63px;
+}
+
+.d8-7 {
+  width: 63px;
+  height: 62px;
+  background: url(d8.png) -128px -63px;
+}
+
+.d8-8 {
+  width: 63px;
+  height: 62px;
+  background: url(d8.png) -192px -63px;
+}
+
+.dice img {
+  border: 0;
+  outline: 0;
+}
