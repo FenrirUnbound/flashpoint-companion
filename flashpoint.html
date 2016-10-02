@@ -12,136 +12,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body ng-controller="ScenarioController">
-  <div id="mainView" class="text-center center-block" ng-view>
-    <h1>Flash Point Companion</h1>
 
-    <div class="col-sm-4">
+  <h1 class="text-center">Flash Point Companion</h1>
+
+  <div>
+    <div id="generator" class="col-xs-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">First Explosion</h3>
+          <h3 class="panel-title">Scenario Generator</h3>
         </div>
         <div class="panel-body center-block">
-          <span class="d6-{{firstExplosion[0]}} dice img-responsive col-xs-4 col-xs-offset-4"></span>
-          <span class="d8-{{firstExplosion[1]}} dice img-responsive col-xs-4"></span>
+          <div class="col-xs-6">
+            <select ng-model="gameDifficulty" ng-init="gameDifficulty='rookie'">
+              <option value="{{setting.value}}" ng-repeat="setting in difficulty">{{setting.name}}</option>
+            </select>
+          </div>
+          <div class="col-xs-6">
+            <select ng-model="numberOfFirefighters" ng-init="numberOfFirefighters='3'">
+              <option value="{{firefighters}}" ng-repeat="firefighters in [2,3,4,5,6]">{{firefighters}}</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-default col-xs-offset-3 col-xs-6" ng-click="generate(gameDifficulty, numberOfFirefighters)">Generate</button>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Second Explosion</h3>
+
+    <div id="mainView" class="text-center center-block">
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">First Explosion</h3>
+          </div>
+          <div class="panel-body">
+            <span class="d6-{{firstExplosion[0]}} dice img-responsive col-xs-4 col-xs-offset-4"></span>
+            <span class="d8-{{firstExplosion[1]}} dice img-responsive col-xs-4"></span>
+          </div>
         </div>
-        <div class="panel-body center-block">
-          <div>
-            <div class="d6-{{secondExplosion[0]}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
-            <div class="d8-{{secondExplosion[1]}} dice img-responsive col-xs-4"></div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Second Explosion</h3>
+          </div>
+          <div class="panel-body center-block">
+            <div>
+              <div class="d6-{{secondExplosion[0]}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
+              <div class="d8-{{secondExplosion[1]}} dice img-responsive col-xs-4"></div>
+            </div>
+
+            <button type="button" class="btn btn-default col-xs-offset-2 col-xs-8" ng-click="rerollExplosion('secondExplosion')">reroll</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Third Explosion</h3>
+          </div>
+          <div class="panel-body">
+            <div>
+              <div class="d6-{{thirdExplosion[0]}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
+              <div class="d8-{{thirdExplosion[1]}} dice img-responsive col-xs-4"></div>
+            </div>
+
+            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="rerollExplosion('thirdExplosion')">reroll</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">HazMat</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-xs-4" ng-repeat="item in hazMat">
+              <div>
+                <div class="d6-{{item.red}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
+                <div class="d8-{{item.black}} dice img-responsive col-xs-4"></div>
+              </div>
+              <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reRoll(item.name, item.id)">reroll</button>
+            </div>
           </div>
 
-          <button type="button" class="btn btn-default col-xs-offset-2 col-xs-8" ng-click="rerollExplosion('secondExplosion')">reroll</button>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Third Explosion</h3>
-        </div>
-        <div class="panel-body">
-          <div>
-            <div class="d6-{{thirdExplosion[0]}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
-            <div class="d8-{{thirdExplosion[1]}} dice img-responsive col-xs-4"></div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">POI</h3>
           </div>
-
-          <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="rerollExplosion('thirdExplosion')">reroll</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">HazMat</h3>
-        </div>
-        <div class="panel-body">
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{hazMat[0][0]}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
-              <div class="d8-{{hazMat[0][1]}} dice img-responsive col-xs-4"></div>
+          <div class="panel-body">
+            <div class="col-xs-4" ng-repeat="item in poi">
+              <div>
+                <div class="d6-{{item.red}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
+                <div class="d8-{{item.black}} dice img-responsive col-xs-4"></div>
+              </div>
+              <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reRoll(item.name, item.id)">reroll</button>
             </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hazMat', 0)">reroll</button>
-          </div>
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{hazMat[1][0]}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
-              <div class="d8-{{hazMat[1][1]}} dice img-responsive col-xs-4"></div>
-            </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hazMat', 1)">reroll</button>
-          </div>
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{hazMat[2][0]}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
-              <div class="d8-{{hazMat[2][1]}} dice img-responsive col-xs-4"></div>
-            </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hazMat', 2)">reroll</button>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">POI</h3>
-        </div>
-        <div class="panel-body">
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{poi[0][0]}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
-              <div class="d8-{{poi[0][1]}} dice img-responsive col-xs-4"></div>
-            </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('poi', 0)">reroll</button>
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Hot Spots</h3>
           </div>
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{poi[1][0]}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
-              <div class="d8-{{poi[1][1]}} dice img-responsive col-xs-4"></div>
+          <div class="panel-body">
+            <div class="col-xs-4" ng-repeat="item in hotSpots">
+              <div>
+                <div class="d6-{{item.red}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
+                <div class="d8-{{item.black}} dice img-responsive col-xs-4"></div>
+              </div>
+              <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reRoll(item.name, item.id)">reroll</button>
             </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('poi', 1)">reroll</button>
-          </div>
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{poi[2][0]}} dice img-responsive col-xs-4 col-xs-offset-2"></div>
-              <div class="d8-{{poi[2][1]}} dice img-responsive col-xs-4"></div>
-            </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('poi', 2)">reroll</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Hot Spots</h3>
-        </div>
-        <div class="panel-body">
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{hotSpots[0][0]}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
-              <div class="d8-{{hotSpots[0][1]}} dice img-responsive col-xs-4"></div>
-            </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hotSpots', 0)">reroll</button>
-          </div>
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{hotSpots[1][0]}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
-              <div class="d8-{{hotSpots[1][1]}} dice img-responsive col-xs-4"></div>
-            </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hotSpots', 1)">reroll</button>
-          </div>
-          <div class="col-xs-4">
-            <div>
-              <div class="d6-{{hotSpots[2][0]}} dice img-responsive col-xs-4 col-xs-offset-4"></div>
-              <div class="d8-{{hotSpots[2][1]}} dice img-responsive col-xs-4"></div>
-            </div>
-            <button type="button" class="btn btn-default col-xs-8 col-xs-offset-2" ng-click="reroll('hotSpots', 2)">reroll</button>
           </div>
         </div>
       </div>
